@@ -19,9 +19,8 @@ namespace MCLauncherDeobfuscator
 
 
 			Console.WriteLine("Starting...");
-			ModuleContext modCtx = ModuleDef.CreateModuleContext();
-			ModuleDefMD module = ModuleDefMD.Load(@path, modCtx);
-			Assembly asm = Assembly.LoadFrom(@path);
+			ModuleDefMD module = ModuleDefMD.Load(path);
+			Assembly asm = Assembly.LoadFrom(path);
 
 			int times = 0;
 			DecryptStrings(ref times, module, asm);
@@ -39,6 +38,7 @@ namespace MCLauncherDeobfuscator
 
 		private static void DecryptStrings(ref int times, ModuleDefMD module, Assembly asm)
 		{
+			
 			// Start foreach the codes
 			foreach (TypeDef type in module.Types)
 			{
