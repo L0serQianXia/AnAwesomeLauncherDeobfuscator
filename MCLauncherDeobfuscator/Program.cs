@@ -33,14 +33,16 @@ namespace MCLauncherDeobfuscator
 		
 
 			Console.WriteLine("Finished.");
+			Console.WriteLine("Press any key to exit...");
 			Console.Read(); // wait for the user
 		}
 
 		private static void DecryptStrings(ref int times, ModuleDefMD module, Assembly asm)
 		{
-			
 			// Start foreach the codes
-			foreach (TypeDef type in module.Types)
+			// module.Types does not return nested types
+			// So we use GetTypes() to fix this
+			foreach (TypeDef type in module.GetTypes())
 			{
 				foreach (MethodDef method in type.Methods)
 				{
